@@ -1,0 +1,29 @@
+### Build Systems ###
+
+## Gradle
+build/
+.gradle/
+
+### IDE Specific Files ###
+
+## Intellij
+.idea/**
+out/
+*.iml
+
+# commit certain IDEA files for better code consistency between collaborators
+!.idea/runConfigurations
+!.idea/runConfigurations/*.xml
+!.idea/copyright
+!.idea/copyright/*.xml
+!.idea/vcs.xml
+
+## EditorConfig
+
+# Always commit .editorconfig files
+# This is force included because they may be located in some directories that
+#are normally completely excluded (for instance .idea)
+!.editorconfig
+
+## Generic
+.DS_STORE
