@@ -22,7 +22,6 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
-import me.kgustave.komodo.ExperimentalFileWatcherApi
 import me.kgustave.komodo.FileEvent
 import me.kgustave.komodo.FileWatcher
 import java.io.File
@@ -31,7 +30,6 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 @ExperimentalCoroutinesApi
-@ExperimentalFileWatcherApi
 fun CoroutineScope.watch(
     file: File,
     context: CoroutineContext = EmptyCoroutineContext,

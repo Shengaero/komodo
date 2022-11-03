@@ -15,7 +15,6 @@
  */
 package me.kgustave.komodo.internal
 
-import me.kgustave.komodo.ExperimentalFileWatcherApi
 import me.kgustave.komodo.FileEvent
 import me.kgustave.komodo.FileWatcher
 import java.io.File
@@ -26,7 +25,6 @@ import java.util.concurrent.ConcurrentLinkedQueue
 internal val fileSystemWatchService by lazy { FileSystems.getDefault().newWatchService() }
 
 @Suppress("UNCHECKED_CAST")
-@ExperimentalFileWatcherApi
 internal class FileWatcherImpl(private val key: WatchKey): FileWatcher, AutoCloseable, Sequence<FileEvent> {
     private val queue = ConcurrentLinkedQueue<WatchEvent<Path>>()
     override val isOpen: Boolean get() = key.isValid
@@ -92,20 +90,17 @@ internal class FileWatcherImpl(private val key: WatchKey): FileWatcher, AutoClos
     }
 }
 
-@ExperimentalFileWatcherApi
 internal data class FileEventImpl(
     override val file: File,
     override val type: FileEvent.Type,
     override val repeated: Boolean
 ): FileEvent
 
-@ExperimentalFileWatcherApi
 private fun verifyContextIsPath(event: WatchEvent<*>) {
     val context = event.context()
     check(context is Path) { "Invalid event context: $context" }
 }
 
-@ExperimentalFileWatcherApi
 private fun WatchEvent<Path>.toEventImpl(): FileEventImpl {
     return FileEventImpl(
         file = context().toFile(),

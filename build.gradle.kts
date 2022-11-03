@@ -18,58 +18,30 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   idea
   `java-library`
-  kotlin("jvm")
-}
-
-allprojects {
-  group = "me.kgustave"
-  version = "1.0.0"
-}
-
-java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-}
-
-kotlin {
-  sourceSets {
-    all {
-      languageSettings.useExperimentalAnnotation("kotlin.Experimental")
-    }
-  }
-}
-
-tasks {
-  wrapper {
-    gradleVersion = "5.0"
-  }
+  kotlin("jvm") version "1.7.20"
 }
 
 evaluationDependsOnChildren()
 
 allprojects {
-  repositories {
-    jcenter()
+  group = "me.kgustave"
+  version = "1.0.0"
+
+  java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
   }
 
-  val junitVersion: String by ext
+  repositories {
+    mavenCentral()
+  }
 
   dependencies {
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("stdlib-jdk7"))
-    implementation(kotlin("stdlib-jdk8"))
-
     testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit5"))
-    testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
-    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
   }
 
   tasks {
     withType<KotlinCompile> {
-      kotlinOptions {
-        jvmTarget = "1.8"
-        apiVersion = "1.3"
-      }
+      kotlinOptions.jvmTarget = "1.8"
     }
 
     test {

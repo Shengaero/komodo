@@ -46,7 +46,6 @@ package me.kgustave.komodo
  *
  * @see me.kgustave.komodo.FileEvent
  */
-@ExperimentalFileWatcherApi
 interface FileWatcher: AutoCloseable, Sequence<FileEvent> {
     /**
      * Whether or not this FileWatcher is open.

@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("DuplicatedCode")
 package me.kgustave.komodo.coroutines
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.selects.whileSelect
 import kotlinx.coroutines.supervisorScope
-import me.kgustave.komodo.ExperimentalFileWatcherApi
 import java.io.File
 import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * Awaits a [File's][File] creation.
  */
-@ExperimentalFileWatcherApi
-@UseExperimental(ExperimentalCoroutinesApi::class)
-suspend fun File.awaitCreation(context: CoroutineContext = EmptyCoroutineContext) {
+@ExperimentalCoroutinesApi
+suspend fun File.awaitCreation(context: CoroutineContext? = null) {
     // fast-path: file already exists, return immediately
     if(this.exists()) return
 
     // slow-path: file does not exist, wait for it to be created
     supervisorScope { // use supervisorScope as receive channel's functionality may be different in future versions of kotlinx.coroutines
-        val channel = watch(this@awaitCreation, context, watchTree = false) {
+        val channel = watch(this@awaitCreation, context ?: coroutineContext, watchTree = false) {
             watchCreations = true
             watchDeletions = false
             watchModifications = false
@@ -51,15 +49,14 @@ suspend fun File.awaitCreation(context: CoroutineContext = EmptyCoroutineContext
 /**
  * Awaits a [File's][File] deletion.
  */
-@ExperimentalFileWatcherApi
-@UseExperimental(ExperimentalCoroutinesApi::class)
-suspend fun File.awaitDeletion(context: CoroutineContext = EmptyCoroutineContext) {
+@ExperimentalCoroutinesApi
+suspend fun File.awaitDeletion(context: CoroutineContext? = null) {
     // fast-path: file does not exist, return immediately
     if(!this.exists()) return
 
     // slow-path: file exists, wait for it to be deleted
     supervisorScope { // use supervisorScope as receive channel's functionality may be different in future versions of kotlinx.coroutines
-        val channel = watch(this@awaitDeletion, context, watchTree = false) {
+        val channel = watch(this@awaitDeletion, context ?: coroutineContext, watchTree = false) {
             watchDeletions = true
             watchCreations = false
             watchModifications = false

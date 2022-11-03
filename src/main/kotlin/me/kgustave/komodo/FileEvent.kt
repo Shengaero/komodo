@@ -30,7 +30,6 @@ import java.io.File
  * The types received can be filtered via a [FileWatcher Config][FileWatcher.Config]
  * when creating a new [FileWatcher].
  */
-@ExperimentalFileWatcherApi
 interface FileEvent {
     /**
      * The [File] associated with the [FileEvent].

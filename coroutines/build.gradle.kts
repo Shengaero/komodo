@@ -13,27 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
   idea
   `java-library`
-  kotlin("jvm")
+  kotlin("jvm") version "1.7.20"
 }
 
 java {
   sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
-kotlin {
-  sourceSets {
-    all {
-      languageSettings.useExperimentalAnnotation("kotlin.Experimental")
-    }
-  }
-}
-
-val kotlinxCoroutinesVersion: String by ext
-
 dependencies {
-  implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", kotlinxCoroutinesVersion)
   implementation(rootProject)
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 }

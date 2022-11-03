@@ -15,7 +15,6 @@
  */
 package me.kgustave.komodo.tests
 
-import me.kgustave.komodo.ExperimentalFileWatcherApi
 import me.kgustave.komodo.FileEvent
 import me.kgustave.komodo.FileWatcher
 import org.junit.jupiter.api.AfterEach
@@ -26,7 +25,6 @@ import java.lang.IllegalArgumentException
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-@ExperimentalFileWatcherApi
 class FileWatcherTests {
     private lateinit var temp: File
 

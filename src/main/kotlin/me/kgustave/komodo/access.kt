@@ -28,7 +28,7 @@ import java.nio.file.StandardWatchEventKinds.*
  * The [watchTree] option may be used to disable a directory file-tree from being watched, otherwise it
  * will watch a directory file-tree when [file] represents a directory.
  *
- * Additionally the types of [FileEvents][FileEvent] the new FileWatcher receives may be configured using
+ * Additionally, the types of [FileEvents][FileEvent] the new FileWatcher receives may be configured using
  * the [config block][block] closure. See [FileWatcher.Config] for more details on the configuration.
  *
  * @param file The file to watch.
@@ -42,8 +42,6 @@ import java.nio.file.StandardWatchEventKinds.*
  * @see FileWatcher
  * @see FileWatcher.Config
  */
-@Suppress("FunctionName")
-@ExperimentalFileWatcherApi
 fun FileWatcher(file: File, watchTree: Boolean = file.isDirectory, block: (FileWatcher.Config.() -> Unit)? = null): FileWatcher {
     val config = FileWatcher.Config()
     block?.let { config.apply(it) }
@@ -56,7 +54,7 @@ fun FileWatcher(file: File, watchTree: Boolean = file.isDirectory, block: (FileW
  * The [watchTree] option may be used to disable a directory file-tree from being watched, otherwise it
  * will watch a directory file-tree when the receiver File represents a directory.
  *
- * Additionally the types of [FileEvents][FileEvent] the new FileWatcher receives may be configured using
+ * Additionally, the types of [FileEvents][FileEvent] the new FileWatcher receives may be configured using
  * the [config block][block] closure. See [FileWatcher.Config] for more details on the configuration.
  *
  * @receiver The file to watch.
@@ -70,12 +68,10 @@ fun FileWatcher(file: File, watchTree: Boolean = file.isDirectory, block: (FileW
  * @see FileWatcher
  * @see FileWatcher.Config
  */
-@ExperimentalFileWatcherApi
 @JvmName("extension_watcher")
 fun File.watcher(watchTree: Boolean = isDirectory, block: (FileWatcher.Config.() -> Unit)? = null): FileWatcher =
     FileWatcher(this, watchTree, block)
 
-@ExperimentalFileWatcherApi
 @JvmName("internal_createFileWatcher")
 internal fun createFileWatcher(file: File, watchTree: Boolean, config: FileWatcher.Config): FileWatcher {
     val eventKinds = listOfNotNull(

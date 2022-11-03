@@ -19,25 +19,52 @@ package me.kgustave.komodo
 
 import java.io.File
 
-@ExperimentalFileWatcherApi
 private val DEFAULT_CONFIG_INSTANCE = FileWatcher.Config()
 
-@ExperimentalFileWatcherApi
+@Deprecated(
+    message = "Unnecessary package level function, will be removed in later version",
+    replaceWith = ReplaceWith(
+        expression = "FileWatcher()",
+        imports = ["me.kgustave.komodo.FileWatcher"]
+    ),
+    level = DeprecationLevel.ERROR
+)
 fun create(file: File): FileWatcher {
     return createFileWatcher(file, file.isDirectory, DEFAULT_CONFIG_INSTANCE)
 }
 
-@ExperimentalFileWatcherApi
+@Deprecated(
+    message = "Unnecessary package level function, will be removed in later version",
+    replaceWith = ReplaceWith(
+        expression = "FileWatcher()",
+        imports = ["me.kgustave.komodo.FileWatcher"]
+    ),
+    level = DeprecationLevel.ERROR
+)
 fun create(file: File, watchTree: Boolean): FileWatcher {
     return createFileWatcher(file, watchTree, DEFAULT_CONFIG_INSTANCE)
 }
 
-@ExperimentalFileWatcherApi
+@Deprecated(
+    message = "Unnecessary package level function, will be removed in later version",
+    replaceWith = ReplaceWith(
+        expression = "FileWatcher()",
+        imports = ["me.kgustave.komodo.FileWatcher"]
+    ),
+    level = DeprecationLevel.ERROR
+)
 fun create(file: File, config: FileWatcher.Config): FileWatcher {
     return createFileWatcher(file, file.isDirectory, config)
 }
 
-@ExperimentalFileWatcherApi
+@Deprecated(
+    message = "Unnecessary package level function, will be removed in later version",
+    replaceWith = ReplaceWith(
+        expression = "FileWatcher()",
+        imports = ["me.kgustave.komodo.FileWatcher"]
+    ),
+    level = DeprecationLevel.ERROR
+)
 fun create(file: File, watchTree: Boolean, config: FileWatcher.Config): FileWatcher {
     return createFileWatcher(file, watchTree, config)
 }

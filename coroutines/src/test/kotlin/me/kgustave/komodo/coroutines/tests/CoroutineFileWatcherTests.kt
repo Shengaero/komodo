@@ -19,7 +19,6 @@ package me.kgustave.komodo.coroutines.tests
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ReceiveChannel
-import me.kgustave.komodo.ExperimentalFileWatcherApi
 import me.kgustave.komodo.FileEvent
 import me.kgustave.komodo.FileWatcher
 import me.kgustave.komodo.coroutines.awaitCreation
@@ -29,15 +28,15 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.File
+import kotlin.io.path.createTempDirectory
 import kotlin.test.assertEquals
 
 @ExperimentalCoroutinesApi
-@ExperimentalFileWatcherApi
 class CoroutineFileWatcherTests {
     private lateinit var temp: File
 
     @BeforeEach fun `create temp dir`() {
-        temp = createTempDir()
+        temp = createTempDirectory().toFile()
         check(temp.exists()) { "Temp directory was not created!" }
     }
 

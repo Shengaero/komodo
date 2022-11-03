@@ -13,19 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-    val kotlinVersion: String by extra
-
-    resolutionStrategy {
-        eachPlugin {
-            when(requested.id.id) {
-                "org.jetbrains.kotlin.jvm" ->
-                    useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-            }
-        }
-    }
-}
-
 rootProject.name = "komodo"
 
 include(":coroutines")
